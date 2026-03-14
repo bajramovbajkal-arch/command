@@ -3,18 +3,6 @@ from aiogram import Bot, Dispatcher
 from aiogram.types import Message,InlineKeyboardMarkup,InlineKeyboardButton,CallbackQuery
 from aiogram.filters import CommandStart, Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-
-button_1 = KeyboardButton(text="baylanis")
-button_2 = KeyboardButton(text="Xizmetler")
-
-menu_keyboard = ReplyKeyboardMarkup(
-    keyboard=[
-        [button_1, button_2],
-
-    ],
-    resize_keyboard=True,
-)
-
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -23,6 +11,14 @@ TOKEN = os.getenv("TOKEN")
 
 bot= Bot(token=TOKEN)
 dp= Dispatcher()
+
+
+@dp.message(CommandStart())
+async def start_handler(message: Message):
+    await message.answer(
+        "📋 Kerakli bo‘limni tanlang:",
+        reply_markup=inline_kb
+    )
 
 inline_kb = InlineKeyboardMarkup(
     inline_keyboard=[
@@ -35,14 +31,6 @@ inline_kb = InlineKeyboardMarkup(
         [InlineKeyboardButton(text="📞 Command 5", callback_data="com_5")]
     ]
 )
-
-@dp.message(CommandStart())
-async def start_handler(message: Message):
-    await message.answer(
-        "📋 Kerakli bo‘limni tanlang:",
-        reply_markup=inline_kb
-    )
-
 
 @dp.callback_query()
 async def callback_handler(callback: CallbackQuery):
