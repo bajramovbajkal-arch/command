@@ -12,6 +12,10 @@ TOKEN = os.getenv("TOKEN")
 bot= Bot(token=TOKEN)
 dp= Dispatcher()
 
+klaviatura = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text='Telefon1'), KeyboardButton(text='kanal1')],
+        [KeyboardButton(text='Telefon2'), KeyboardButton(text='kanal2')],
 
 @dp.message(CommandStart())
 async def start_handler(message: Message):
