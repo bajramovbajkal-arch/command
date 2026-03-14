@@ -24,6 +24,16 @@ TOKEN = os.getenv("TOKEN")
 bot= Bot(token=TOKEN)
 dp= Dispatcher()
 
+#adilbek
+@dp.message(Command('alo'))
+async def g(a:Message):
+    await a.answer('dnx')
+
+@dp.message(Command('jardem'))
+async def g(a:Message):
+    await a.answer('ne jardem kerek')
+
+
 inline_kb = InlineKeyboardMarkup(
     inline_keyboard=[
         [InlineKeyboardButton(text="📞 Command 1", callback_data="com_1"),
